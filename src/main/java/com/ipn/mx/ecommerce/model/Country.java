@@ -24,6 +24,6 @@ public class Country implements Serializable {
     @Column(name = "country_name", length = 240, nullable = false)
     private String countryName;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "countryId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;
 }

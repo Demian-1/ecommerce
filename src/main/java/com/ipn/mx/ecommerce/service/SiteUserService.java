@@ -18,6 +18,10 @@ public class SiteUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public Optional<SiteUser> getUserById(int id) {
+        return siteUserRepository.findById(id);
+    }
+    
     public SiteUser registerUser(SiteUser user) {
         if (siteUserRepository.findByEmailAddress(user.getEmailAddress()).isPresent()) {
             throw new IllegalArgumentException("User with this email already exists");

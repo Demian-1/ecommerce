@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserAddressServiceImpl implements UserAddressService {
@@ -15,22 +16,36 @@ public class UserAddressServiceImpl implements UserAddressService {
     private UserAddressRepository userAddressRepository;
 
     @Override
-    public List<UserAddress> findAll() {
-        return userAddressRepository.findAll();
-    }
-
-    @Override
-    public UserAddress findById(int id) {
-        return userAddressRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public UserAddress save(UserAddress userAddress) {
+    public UserAddress saveUserAddress(UserAddress userAddress) {
         return userAddressRepository.save(userAddress);
     }
 
     @Override
-    public void deleteById(int id) {
+    public Optional<UserAddress> getUserAddressById(int id) {
+        return userAddressRepository.findById(id);
+    }
+
+    @Override
+    public List<UserAddress> getAllUserAddresses() {
+        return userAddressRepository.findAll();
+    }
+
+    @Override
+    public void deleteUserAddress(int id) {
         userAddressRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserAddress> getUserAddressesByUserId(int userId) {
+        return userAddressRepository.findByUserId(userId);
+    }
+    
+    @Override
+    public Optional<UserAddress> updateUserAddress(int id, UserAddress userAddressDetails) {
+        return userAddressRepository.findById(id).map(userAddress -> {
+            userAddress.setAddress(userAddressDetails.getAddress());
+            userAddress.setDefault(userAddressDetails.isDefault());
+            return userAddressRepository.save(userAddress);
+        });
     }
 }

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,10 +44,10 @@ public class Address implements Serializable {
     @Column(name = "postal_code", length = 20, nullable = false)
     private String postalCode;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id", nullable = false)
-    private Country country;
+    @Column(name = "country_id", nullable = false)
+    private int countryId;
 
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UserAddress> userAddresses;
 }

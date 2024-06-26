@@ -15,6 +15,11 @@ public class SiteUserController {
     @Autowired
     private SiteUserService siteUserService;
 
+    @GetMapping("/{id}")
+    public SiteUser getCountryById(@PathVariable int id) {
+        return siteUserService.getUserById(id).orElse(null);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody SiteUser user) {
         try {
