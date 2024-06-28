@@ -1,7 +1,7 @@
 package com.ipn.mx.ecommerce.controller;
 
 import com.ipn.mx.ecommerce.model.Address;
-import com.ipn.mx.ecommerce.service.AddressService;
+import com.ipn.mx.ecommerce.service.interfaces.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

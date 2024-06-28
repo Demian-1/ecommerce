@@ -2,7 +2,7 @@ package com.ipn.mx.ecommerce.service.impl;
 
 import com.ipn.mx.ecommerce.model.Country;
 import com.ipn.mx.ecommerce.repository.CountryRepository;
-import com.ipn.mx.ecommerce.service.CountryService;
+import com.ipn.mx.ecommerce.service.interfaces.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

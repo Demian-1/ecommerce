@@ -1,4 +1,4 @@
-package com.ipn.mx.ecommerce.service;
+package com.ipn.mx.ecommerce.service.interfaces;
 
 import com.ipn.mx.ecommerce.model.Country;
 

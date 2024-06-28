@@ -24,7 +24,5 @@ public class ProductItem implements Serializable {
     private int id;
 
 
-    @OneToMany(mappedBy = "OrderLine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<UserAddress> userAddresses;
+
 }

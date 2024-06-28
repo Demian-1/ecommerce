@@ -1,7 +1,7 @@
 package com.ipn.mx.ecommerce.controller;
 
 import com.ipn.mx.ecommerce.model.SiteUser;
-import com.ipn.mx.ecommerce.service.SiteUserService;
+import com.ipn.mx.ecommerce.service.interfaces.SiteUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

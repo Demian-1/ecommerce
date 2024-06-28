@@ -2,7 +2,7 @@ package com.ipn.mx.ecommerce.service.impl;
 
 import com.ipn.mx.ecommerce.model.OrderStatus;
 import com.ipn.mx.ecommerce.repository.OrderStatusRepository;
-import com.ipn.mx.ecommerce.service.OrderStatusService;
+import com.ipn.mx.ecommerce.service.interfaces.OrderStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
