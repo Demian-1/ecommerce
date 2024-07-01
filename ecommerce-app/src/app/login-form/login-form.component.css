@@ -1,4 +1,11 @@
-.login-form-container {
+.login-card {
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .login-form-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 2rem;
@@ -19,5 +26,4 @@
   button {
     width: 100%;
   }
-  
   

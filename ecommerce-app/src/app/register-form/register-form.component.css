@@ -1,8 +1,8 @@
 .register-card {
-    border: none !important; /* Eliminar bordes del p-card */
-    box-shadow: none !important; /* Eliminar sombras del p-card */
-    margin: 0 !important; /* Eliminar márgenes del p-card */
-    padding: 0 !important; /* Eliminar padding del p-card */
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .register-form-container {
