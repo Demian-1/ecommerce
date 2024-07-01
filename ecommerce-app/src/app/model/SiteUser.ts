@@ -7,6 +7,14 @@ export interface SiteUser {
   userAddresses?: UserAddress[]; // Campo opcional para manejar la ausencia de direcciones de usuario
 }
 
+export class SiteUser {
+  id: number = 0; // Campo opcional para manejar la ausencia de ID en un nuevo registro
+  emailAddress: string = '';
+  userName: string = '';
+  phoneNumber: string= '';
+  password: string ='';
+}
+
 export interface UserAddress {
   id?: number;
   street: string;

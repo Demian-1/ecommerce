@@ -1,12 +1,15 @@
-<div class="d-flex flex-column min-vh-100">
-  <ng-container *ngIf="authService.isAuthenticated(); else notAuthenticated">
-    <app-header></app-header>
-  </ng-container>
-  <ng-template #notAuthenticated>
-    <app-header-no-auth></app-header-no-auth>  
-  </ng-template>
-  <div class="flex-grow-1">
-    <router-outlet></router-outlet>
+<div class="container">
+  <div class="d-flex flex-column min-vh-100">
+    <ng-container *ngIf="authService.isAuthenticated(); else notAuthenticated">
+      <app-header></app-header>
+    </ng-container>
+    <ng-template #notAuthenticated>
+      <app-header-no-auth></app-header-no-auth>  
+    </ng-template>
+    <div class="flex-grow-1">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
   </div>
-  <app-footer></app-footer>
 </div>
+

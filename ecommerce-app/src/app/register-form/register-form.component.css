@@ -24,6 +24,14 @@
   }
   
   button {
+    margin-top: 20px;
     width: 100%;
   }
   
+  .form-field{
+    margin: 10px;
+  }
+
+  input {
+    width: 100%;
+  }

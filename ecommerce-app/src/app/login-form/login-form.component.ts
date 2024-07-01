@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { SiteUserService } from '../service/site-user.service';
 import { AuthService } from '../service/auth.service';
 import { SiteUser } from '../model/SiteUser';
+import { FloatLabelModule } from 'primeng/floatlabel';
 @Component({
   selector: 'app-login-form',
   standalone: true,
@@ -25,7 +26,8 @@ import { SiteUser } from '../model/SiteUser';
     CardModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    FloatLabelModule
   ],
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],

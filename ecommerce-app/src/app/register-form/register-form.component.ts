@@ -11,6 +11,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { SiteUserService } from '../service/site-user.service';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { SiteUserService } from '../service/site-user.service';
     CardModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    FloatLabelModule
   ],
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
