@@ -3,14 +3,14 @@
     <h2>Inicio de Sesión</h2>
     <p-messages [value]="[{ severity: 'info', summary: 'Info', detail: 'Por favor, ingrese sus datos para iniciar sesión.' }]"></p-messages>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="p-field">
-        <label for="emailAddress">Correo Electrónico</label>
+      <p-floatLabel class="form-field">
         <input id="emailAddress" type="email" pInputText formControlName="emailAddress">
-      </div>
-      <div class="p-field">
-        <label for="password">Contraseña</label><br>
+        <label for="emailAddress">Correo Electrónico</label>
+      </p-floatLabel>
+      <p-floatLabel class="form-field">
         <input id="password" type="password" pPassword formControlName="password">
-      </div>
+        <label for="password">Contraseña</label><br>
+      </p-floatLabel>
       <button pButton type="submit" label="Iniciar Sesión"></button>
     </form>
     <p-toast></p-toast>

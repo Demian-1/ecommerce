@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AuthGuard } from './service/auth.guard';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 export const routes: Routes = [
     {
@@ -51,5 +52,9 @@ export const routes: Routes = [
       path: 'user_address',
       component: RegisterFormComponent,
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'user-info',
+      component: UserInfoComponent,
     }
   ];

@@ -1,0 +1,28 @@
+<div class="form">
+    <h1>Informacion de la cuenta</h1>
+    <div>
+        <p-button (onClick)="editar = !editar">
+            @if(editar){
+                Cancelar
+            }@else{
+                Editar
+            }
+        </p-button>
+    </div>
+    <p-floatLabel class="form-field">
+        <p-inputNumber [(ngModel)]="usuario.id" id="id" [disabled]="false"></p-inputNumber>
+        <label for="id">Id</label>
+    </p-floatLabel>
+    <p-floatLabel class="form-field">
+        <input pInputText [(ngModel)]="usuario.emailAddress" type="email" id="emailAddress" name="Email" [disabled]="!editar"/>
+        <label for="emailAddress">Email</label>
+    </p-floatLabel>
+    <p-floatLabel class="form-field">
+        <input pInputText [(ngModel)]="usuario.userName" type="text" id="userName" name="Nombre" [disabled]="!editar"/>
+        <label for="userName">Nombre usuario</label>
+    </p-floatLabel>
+    <p-floatLabel class="form-field">
+        <input pInputText [(ngModel)]="usuario.phoneNumber" type="number" id="phoneNumber" name="Telefono" [disabled]="!editar"/>
+        <label for="phoneNumber">Telefono</label>
+    </p-floatLabel>
+</div>

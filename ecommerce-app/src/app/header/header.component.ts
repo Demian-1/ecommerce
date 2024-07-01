@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
       { label: 'Orden', icon: 'pi pi-file', routerLink: '/shop_order' },
       { label: 'Método de Pago', icon: 'pi pi-wallet', routerLink: '/user_payment_method' },
       { label: 'Dirección de Usuario', icon: 'pi pi-map', routerLink: '/user_address' },
+      { label: 'Info de Usuario', icon: 'pi pi-info-circle', routerLink: '/user-info' },
       { label: 'Logout', icon: 'pi pi-sign-out', command: () => this.showLogoutDialog() }
     ];
   }
