@@ -22,9 +22,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.elementosDelMenu = [
-      { label: 'Home', icon: 'pi pi-home', routerLink: '/home' },
-      { label: 'Categorías', icon: 'pi pi-tags', routerLink: '/categoria' },
-      { label: 'Productos', icon: 'pi pi-box', routerLink: '/product' },
+      { label: 'Home', icon: 'pi pi-home', routerLink: '/product-list' },
+      { label: 'Productos', icon: 'pi pi-box', routerLink: '/product-list' },
       { label: 'Carrito', icon: 'pi pi-shopping-cart', routerLink: '/shopping_cart' },
       { label: 'Orden', icon: 'pi pi-file', routerLink: '/shop_order' },
       { label: 'Método de Pago', icon: 'pi pi-wallet', routerLink: '/user_payment_method' },

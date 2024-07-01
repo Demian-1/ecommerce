@@ -33,6 +33,9 @@ public class Product implements Serializable {
     @Column(nullable = false, length = 100)
     private String image;
 
+    @Column(nullable = false)
+    private double price;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     @JsonBackReference

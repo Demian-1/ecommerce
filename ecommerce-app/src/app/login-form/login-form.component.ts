@@ -56,7 +56,7 @@ export class LoginFormComponent {
         (response: SiteUser) => {
           this.authService.login(response.id); // Guarda el ID del usuario
           this.messageService.add({ severity: 'success', summary: 'Inicio de Sesión Exitoso', detail: 'Usuario autenticado correctamente' });
-          this.router.navigate(['/home']);
+          this.router.navigate(['/product-list']);
         },
         error => {
           this.messageService.add({ severity: 'error', summary: 'Error de Inicio de Sesión', detail: 'Credenciales inválidas' });

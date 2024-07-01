@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SiteUser } from '../model/SiteUser';
+import { SiteUser, SiteUserDTO } from '../model/SiteUser';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +35,8 @@ export class SiteUserService {
     return this.http.get<SiteUser[]>(`${this.apiUrl}/all`);
   }
 
-  updateUser(id: number, user: SiteUser): Observable<SiteUser> {
-    return this.http.put<SiteUser>(`${this.apiUrl}/${id}`, user, {
+  updateUser(id: number, user: SiteUserDTO): Observable<SiteUserDTO> {
+    return this.http.put<SiteUserDTO>(`${this.apiUrl}/${id}`, user, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }

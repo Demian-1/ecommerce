@@ -5,11 +5,12 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { AuthGuard } from './service/auth.guard';
 import { AddressComponent } from './address/address.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
 
 export const routes: Routes = [
     {
       path: '',
-      redirectTo: '/home',
+      redirectTo: '/product-list',
       pathMatch: 'full'
     },
     {
@@ -57,5 +58,9 @@ export const routes: Routes = [
     {
       path: 'user-info',
       component: UserInfoComponent,
+    },
+    {
+      path: 'product-list',
+      component: ProductListComponent,
     }
   ];

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { SiteUser } from '../model/SiteUser';
+import { SiteUserDTO } from '../model/SiteUser';
 import { SiteUserService } from '../service/site-user.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ToastModule } from 'primeng/toast';
@@ -31,7 +31,7 @@ export class UserInfoComponent {
     private siteUserService: SiteUserService,
     private messageService: MessageService
   ){}
-  usuario = new SiteUser();
+  usuario = new SiteUserDTO();
   editar = false;
   
 
