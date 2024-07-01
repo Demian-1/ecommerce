@@ -18,17 +18,16 @@ interface Country {
 
 interface Address {
   id: number;
-  unitNumber: string; // Cambiar de string | undefined a string
-  streetNumber: string; // Cambiar de string | undefined a string
-  addressLine1: string; // Cambiar de string | undefined a string
-  addressLine2: string; // Cambiar de string | undefined a string
-  city: string; // Cambiar de string | undefined a string
-  region: string; // Cambiar de string | undefined a string
-  postalCode: string; // Cambiar de string | undefined a string
-  countryId: number; // Cambiar de number | undefined a number
+  unitNumber: string;
+  streetNumber: string;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  region: string;
+  postalCode: string;
+  countryId: number;
   isDefault?: boolean;
 }
-
 
 @Component({
   selector: 'app-address',
@@ -43,6 +42,7 @@ export class AddressComponent implements OnInit {
   addresses: Address[] = [];
   userAddresses: UserAddressPayload[] = [];
   userId: number | null = null;
+  editingAddressId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -96,7 +96,6 @@ export class AddressComponent implements OnInit {
       });
     }
   }
-  
 
   onSubmit(): void {
     if (this.addressForm.valid && this.userId !== null) {
@@ -106,11 +105,18 @@ export class AddressComponent implements OnInit {
         countryId: formValue.countryId.id
       };
 
-      this.addressService.createAddress(addressPayload).subscribe(address => {
-        this.addresses.push({ ...address, isDefault: false });
-        this.addressForm.reset();
-        this.linkAddressToUser(address.id);
-      });
+      if (this.editingAddressId === null) {
+        this.addressService.createAddress(addressPayload).subscribe(address => {
+          this.addresses.push({ ...address, isDefault: false });
+          this.addressForm.reset();
+          this.linkAddressToUser(address.id);
+        });
+      } else {
+        this.addressService.updateAddress(this.editingAddressId, addressPayload).subscribe(() => {
+          this.loadUserAddresses(); // Recargar las direcciones después de la actualización
+          this.resetForm();
+        });
+      }
     } else {
       this.addressForm.markAllAsTouched();
     }
@@ -171,6 +177,25 @@ export class AddressComponent implements OnInit {
         });
       }
     }
+  }
+
+  editAddress(address: Address): void {
+    this.editingAddressId = address.id;
+    this.addressForm.patchValue({
+      addressLine1: address.addressLine1,
+      addressLine2: address.addressLine2,
+      city: address.city,
+      region: address.region,
+      postalCode: address.postalCode,
+      streetNumber: address.streetNumber,
+      unitNumber: address.unitNumber,
+      countryId: this.countries.find(country => country.id === address.countryId)
+    });
+  }
+
+  resetForm(): void {
+    this.addressForm.reset();
+    this.editingAddressId = null;
   }
 
   getCountryName(countryId: number): string {
