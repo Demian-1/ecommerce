@@ -5,6 +5,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { AuthGuard } from './service/auth.guard';
 import { AddressComponent } from './address/address.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 export const routes: Routes = [
     {
@@ -46,7 +47,7 @@ export const routes: Routes = [
     },
     {
       path: 'user_payment_method',
-      component: RegisterFormComponent,
+      component: PaymentFormComponent,
       canActivate: [AuthGuard]
     },
     {
