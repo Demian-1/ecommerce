@@ -1,0 +1,92 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .flex-column {
+    flex-direction: column;
+  }
+  
+  .min-vh-100 {
+    min-height: 100vh;
+  }
+  
+  .flex-grow-1 {
+    flex-grow: 1;
+  }
+  
+  /* Estilos para el footer */
+  footer {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    border-top: none; /* Asegurarse de que no haya borde superior */
+  }
+  
+  /* Footer styles */
+  .footer-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px 50px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .logo-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .contact span {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .socials a {
+    margin: 0 10px;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+  
+  .links ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .links li {
+    margin: 10px 0;
+  }
+  
+  .footer-bottom {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  /* Eliminar cualquier borde o margen entre el contenido principal y el footer */
+  .router-outlet, .flex-grow-1 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  

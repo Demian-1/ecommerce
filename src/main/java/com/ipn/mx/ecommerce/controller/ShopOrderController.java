@@ -1,69 +1,44 @@
 package com.ipn.mx.ecommerce.controller;
 
-
 import com.ipn.mx.ecommerce.model.ShopOrder;
-import com.ipn.mx.ecommerce.service.impl.ShopOrderServiceImpl;
+import com.ipn.mx.ecommerce.service.interfaces.ShopOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
-@SuppressWarnings("ALL")
 @RestController
-@RequestMapping("/api/shopOrder")
+@RequestMapping("/api/shop-orders")
 public class ShopOrderController {
+
     @Autowired
-    private ShopOrderServiceImpl shopOrderService;
+    private ShopOrderService shopOrderService;
+
+    @PostMapping
+    public ResponseEntity<ShopOrder> createShopOrder(@RequestBody ShopOrder shopOrder) {
+        return ResponseEntity.ok(shopOrderService.saveShopOrder(shopOrder));
+    }
 
     @GetMapping
-    public List<ShopOrder> getAll() {
-        return shopOrderService.findAll();
+    public ResponseEntity<List<ShopOrder>> getAllShopOrders() {
+        return ResponseEntity.ok(shopOrderService.getAllShopOrders());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShopOrder> getById(@PathVariable int id) {
-        Optional<ShopOrder> orderStatus = shopOrderService.findById(id);
-        if(orderStatus.isPresent()) {
-            return ResponseEntity.ok(orderStatus.get());
-        } else{
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping
-    public ShopOrder create(@RequestBody ShopOrder orderStatus) {
-        return shopOrderService.save(orderStatus);
+    public ResponseEntity<ShopOrder> getShopOrderById(@PathVariable int id) {
+        return ResponseEntity.ok(shopOrderService.getShopOrderById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ShopOrder> update(@PathVariable int id, @RequestBody ShopOrder shopOrder) {
-        Optional<ShopOrder> optionalShopOrder = shopOrderService.findById(id);
-        if(optionalShopOrder.isPresent()) {
-            ShopOrder shopOrderAux = optionalShopOrder.get();
-
-            shopOrderAux.setOrderDate(shopOrder.getOrderDate());
-            shopOrderAux.setAddress(shopOrder.getAddress());
-            shopOrderAux.setShippingMetod(shopOrder.getShippingMetod());
-            shopOrderAux.setOrderTotal(shopOrder.getOrderTotal());
-            shopOrderAux.setOrderStatus(shopOrder.getOrderStatus());
-
-
-            return ResponseEntity.ok(shopOrderService.save(shopOrderAux));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<ShopOrder> updateShopOrder(@PathVariable int id, @RequestBody ShopOrder shopOrder) {
+        shopOrder.setId(id);
+        return ResponseEntity.ok(shopOrderService.updateShopOrder(shopOrder));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id) {
-        Optional<ShopOrder> optionalOrderStatus = shopOrderService.findById(id);
-        if (optionalOrderStatus.isPresent()) {
-            shopOrderService.delete(optionalOrderStatus.get());
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deleteShopOrder(@PathVariable int id) {
+        shopOrderService.deleteShopOrder(id);
+        return ResponseEntity.noContent().build();
     }
 }

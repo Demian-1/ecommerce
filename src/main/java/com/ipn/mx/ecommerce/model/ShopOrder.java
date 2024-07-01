@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "ShopOrder")
+@Table(name = "shop_order")
 public class ShopOrder implements Serializable {
 
     @Id
@@ -25,25 +26,24 @@ public class ShopOrder implements Serializable {
     private int id;
 
     @Column(name = "order_date", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date orderDate;
 
     @ManyToOne
-    @JoinColumn(name = "sipping_adress", nullable = false)
+    @JoinColumn(name = "shipping_address_id", nullable = false)
     private Address address;
 
     @Column(name = "shipping_method", nullable = false,length = 100)
-    private String ShippingMetod;
+    private String shippingMethod;
 
-    @Column(name = "oreder_total", nullable = false)
+    @Column(name = "order_total", nullable = false)
     private Float orderTotal;
 
     @Column(name = "order_status", nullable = false, length = 50)
-    private Date orderStatus;
+    private String orderStatus;
 
-    //todo userPayment method
-    //@OneToMany(mappedBy = "UserPaymentMethod", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@JsonIgnore
-    //private List<UserPaymentMethod> userPaymentMethod;
-
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<UserPaymentMethod> userPaymentMethods; 
 }
 

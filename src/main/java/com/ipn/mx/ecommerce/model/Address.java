@@ -50,4 +50,8 @@ public class Address implements Serializable {
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<UserAddress> userAddresses;
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ShopOrder> userShopOrders;
 }

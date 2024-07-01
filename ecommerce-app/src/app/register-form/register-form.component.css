@@ -1,0 +1,29 @@
+.register-card {
+    border: none !important; /* Eliminar bordes del p-card */
+    box-shadow: none !important; /* Eliminar sombras del p-card */
+    margin: 0 !important; /* Eliminar márgenes del p-card */
+    padding: 0 !important; /* Eliminar padding del p-card */
+  }
+  
+  .register-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-form-container h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .p-field {
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    width: 100%;
+  }
+  

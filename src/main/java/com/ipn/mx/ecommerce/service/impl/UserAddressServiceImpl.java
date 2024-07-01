@@ -2,7 +2,7 @@ package com.ipn.mx.ecommerce.service.impl;
 
 import com.ipn.mx.ecommerce.model.UserAddress;
 import com.ipn.mx.ecommerce.repository.UserAddressRepository;
-import com.ipn.mx.ecommerce.service.UserAddressService;
+import com.ipn.mx.ecommerce.service.interfaces.UserAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

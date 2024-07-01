@@ -1,12 +1,13 @@
 package com.ipn.mx.ecommerce.controller;
 
 import com.ipn.mx.ecommerce.model.SiteUser;
-import com.ipn.mx.ecommerce.service.SiteUserService;
+import com.ipn.mx.ecommerce.service.interfaces.SiteUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -16,8 +17,8 @@ public class SiteUserController {
     private SiteUserService siteUserService;
 
     @GetMapping("/{id}")
-    public SiteUser getCountryById(@PathVariable int id) {
-        return siteUserService.getUserById(id).orElse(null);
+    public Optional<SiteUser> getCountryById(@PathVariable int id) {
+        return siteUserService.getUserById(id);
     }
 
     @PostMapping("/register")
