@@ -1,0 +1,26 @@
+<div>
+    <div class="login-form-container">
+      <h2>Inicio de Sesión</h2>
+      <p-message severity="info" text="Por favor, ingrese sus datos para iniciar sesión."></p-message>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="p-field">
+          <label for="emailAddress">Correo Electrónico</label>
+          <input id="emailAddress" type="email" pInputText formControlName="emailAddress">
+        </div>
+        <div class="p-field">
+          <label for="userName">Nombre de Usuario</label>
+          <input id="userName" type="text" pInputText formControlName="userName">
+        </div>
+        <div class="p-field">
+          <label for="phoneNumber">Número de Teléfono</label>
+          <input id="phoneNumber" type="tel" pInputText formControlName="phoneNumber">
+        </div>
+        <div class="p-field">
+          <label for="password">Contraseña</label><br>
+          <input id="password" type="password" pPassword formControlName="password">
+        </div>
+        <button pButton type="submit" label="Iniciar Sesión"></button>
+      </form>
+      <p-toast></p-toast>
+    </div>
+</div>

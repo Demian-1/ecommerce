@@ -1,13 +1,7 @@
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-    <app-header></app-header>
-    </div>
-    <div class="card-body">
-    <router-outlet />
-    </div>
-    <div class="card-footer">
-        <app-footer></app-footer> 
-    </div>
+<div class="d-flex flex-column min-vh-100">
+  <app-header></app-header>
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
   </div>
+  <app-footer></app-footer>
 </div>
