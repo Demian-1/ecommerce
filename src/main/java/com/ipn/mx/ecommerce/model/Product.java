@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Builder
@@ -40,4 +41,10 @@ public class Product implements Serializable {
     @JoinColumn(name = "category_id")
     @JsonBackReference
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ShoppingCartItem> shoppingCartItems;
+
+    @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderLine> orderLineItems;
 }

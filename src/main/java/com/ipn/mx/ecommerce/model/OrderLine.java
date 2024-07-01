@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "order_status")
+@Table(name = "order_line")
 public class OrderLine implements Serializable {
 
     @Id
@@ -27,6 +27,10 @@ public class OrderLine implements Serializable {
 
     @Column(name = "qty", nullable = false)
     private Integer qty;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product productItem;
 
 
     @ManyToOne
