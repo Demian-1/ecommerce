@@ -58,7 +58,8 @@
         <td>{{ paymentMethod.expiryDate | date: 'yyyy-MM-dd' }}</td>
         <td>{{ paymentMethod.isDefault ? 'Sí' : 'No' }}</td>
         <td>
-          <button pButton type="button" icon="pi pi-trash" (click)="deletePaymentMethod(paymentMethod.id)"></button>
+          <button pButton type="button" icon="pi pi-pencil" class="button-green" (click)="editPaymentMethod(paymentMethod)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="button-red" (click)="deletePaymentMethod(paymentMethod.id)"></button>
           <button pButton type="button" label="Set Default" icon="pi pi-check" (click)="setDefaultPaymentMethod(paymentMethod)" [disabled]="paymentMethod.isDefault"></button>
         </td>
       </tr>

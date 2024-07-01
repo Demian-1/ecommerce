@@ -55,3 +55,13 @@
   width: 100%;
   margin-top: 1rem;
 }
+
+.button-red {
+  background-color: #f44336 !important;
+  border: none !important;
+}
+
+.button-green {
+  background-color: #4caf50 !important;
+  border: none !important;
+}

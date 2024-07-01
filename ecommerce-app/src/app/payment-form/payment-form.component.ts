@@ -35,6 +35,7 @@ export class PaymentFormComponent implements OnInit {
   paymentTypes: PaymentType[] = [];
   paymentMethods: UserPaymentMethod[] = [];
   userId: number | null = null;
+  editingPaymentMethodId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -77,7 +78,7 @@ export class PaymentFormComponent implements OnInit {
     if (this.paymentForm.valid && this.userId !== null) {
       const formValue = this.paymentForm.value;
       const paymentMethodPayload: UserPaymentMethod = {
-        id: 0, // Temporal ID
+        id: this.editingPaymentMethodId ?? 0, // Usar ID temporal o el ID de edición
         user: { id: this.userId },
         paymentType: formValue.paymentType,
         provider: formValue.provider,
@@ -86,12 +87,18 @@ export class PaymentFormComponent implements OnInit {
         isDefault: formValue.isDefault
       };
 
-      this.userPaymentMethodService.createUserPaymentMethod(paymentMethodPayload).subscribe(paymentMethod => {
-        this.paymentMethods.push(paymentMethod);
-        this.paymentForm.reset();
-        this.paymentForm.patchValue({ isDefault: false }); // Reset isDefault to false
-        this.loadUserPaymentMethods(); // Recargar los métodos de pago después de agregar uno nuevo
-      });
+      if (this.editingPaymentMethodId === null) {
+        this.userPaymentMethodService.createUserPaymentMethod(paymentMethodPayload).subscribe(paymentMethod => {
+          this.paymentMethods.push(paymentMethod);
+          this.resetForm();
+          this.loadUserPaymentMethods(); // Recargar los métodos de pago después de agregar uno nuevo
+        });
+      } else {
+        this.userPaymentMethodService.updateUserPaymentMethod(this.editingPaymentMethodId, paymentMethodPayload).subscribe(() => {
+          this.loadUserPaymentMethods(); // Recargar los métodos de pago después de la actualización
+          this.resetForm();
+        });
+      }
     } else {
       this.paymentForm.markAllAsTouched();
     }
@@ -115,10 +122,27 @@ export class PaymentFormComponent implements OnInit {
 
       // Establecer el método de pago seleccionado como predeterminado
       const updatedPaymentMethod = { ...paymentMethod, isDefault: true };
-      this.userPaymentMethodService.setDefaultPaymentMethod(paymentMethod.id, updatedPaymentMethod).subscribe(() => {
+      this.userPaymentMethodService.updateUserPaymentMethod(paymentMethod.id, updatedPaymentMethod).subscribe(() => {
         this.loadUserPaymentMethods(); // Recargar los métodos de pago después de la actualización
       });
     }
+  }
+
+  editPaymentMethod(paymentMethod: UserPaymentMethod): void {
+    this.editingPaymentMethodId = paymentMethod.id;
+    this.paymentForm.patchValue({
+      paymentType: paymentMethod.paymentType,
+      provider: paymentMethod.provider,
+      accountNumber: paymentMethod.accountNumber,
+      expiryDate: paymentMethod.expiryDate,
+      isDefault: paymentMethod.isDefault
+    });
+  }
+
+  resetForm(): void {
+    this.paymentForm.reset();
+    this.paymentForm.patchValue({ isDefault: false }); // Reset isDefault to false
+    this.editingPaymentMethodId = null;
   }
 
   censorAccountNumber(accountNumber: string): string {
