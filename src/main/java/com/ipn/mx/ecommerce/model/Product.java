@@ -30,7 +30,7 @@ public class Product implements Serializable {
     @Column(nullable = false, length = 240)
     private String description;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 240)
     private String image;
 
     @Column(nullable = false)

@@ -7,6 +7,7 @@ import { AddressComponent } from './address/address.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { ProductItemComponent } from './products/product-item/product-item.component';
 
 export const routes: Routes = [
     {

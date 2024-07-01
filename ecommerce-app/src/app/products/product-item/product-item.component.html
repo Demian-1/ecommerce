@@ -1,1 +1,17 @@
-<p>product-item works!</p>
+<p-card header="{{product.name}}" [style]="{ width: '360px' }" class="product-item">
+    <ng-template pTemplate="header" class="image-container">
+        <div class="image-container">
+            <img class="product-image" alt="Card" src="{{product.image}}" />
+        </div>
+    </ng-template>
+    <p class="product-description">
+        {{ product.description }}
+    </p>
+    
+    <div class="product-price-cart">
+        <p>{{ "$"+product.price }}</p>
+        <span>
+            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" (onClick)="addToCart(product.id)"/>
+        </span>
+    </div>
+</p-card>

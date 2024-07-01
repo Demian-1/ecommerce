@@ -1,0 +1,41 @@
+.product-price-cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-price-cart p {
+    font-weight: bold;
+    font-size: large;
+}
+
+.product-image {
+    height: 100%; /* Adjust the height as necessary */
+    
+    object-fit: cover; /* This ensures the image maintains its aspect ratio while filling the specified width and height */
+    border-radius: 8px; /* Optional: Add border radius for rounded corners */
+}
+
+.image-container {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-item {
+    display: block;
+    padding: 10px;
+    margin: 10px;
+}
+
+.product-description {
+    width: 100%; /* Ensure it respects the parent width */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide the overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis (...) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    line-height: 1.5; /* Adjust line height as needed */
+    max-height: 4.5em; /* Should be line-height * lines to show */
+  }
