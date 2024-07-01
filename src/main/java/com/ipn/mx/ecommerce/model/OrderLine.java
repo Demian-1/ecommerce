@@ -28,9 +28,6 @@ public class OrderLine implements Serializable {
     @Column(name = "qty", nullable = false)
     private Integer qty;
 
-    @ManyToOne
-    @JoinColumn(name = "ProductItem", nullable = false)
-    private ProductItem productItem;
 
     @ManyToOne
     @JoinColumn(name = "ShopOrder", nullable = false)
