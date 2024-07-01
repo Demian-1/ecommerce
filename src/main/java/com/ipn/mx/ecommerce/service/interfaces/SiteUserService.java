@@ -2,6 +2,8 @@ package com.ipn.mx.ecommerce.service.interfaces;
 
 import com.ipn.mx.ecommerce.model.SiteUser;
 import com.ipn.mx.ecommerce.repository.SiteUserRepository;
+import com.ipn.mx.ecommerce.service.EmailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,16 +20,27 @@ public class SiteUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
     public Optional<SiteUser> getUserById(int id) {
         return siteUserRepository.findById(id);
     }
     
     public SiteUser registerUser(SiteUser user) {
         if (siteUserRepository.findByEmailAddress(user.getEmailAddress()).isPresent()) {
-            throw new IllegalArgumentException("User with this email already exists");
+            throw new IllegalArgumentException("Este correo ya esta registrado");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return siteUserRepository.save(user);
+        SiteUser registeredUser = siteUserRepository.save(user);
+
+        emailService.sendWelcomeEmail(
+                user.getEmailAddress(),
+                "Bienvenido a nuestro E-commerce",
+                "Querido " + user.getUserName() + ",\n\nGracias por registrarce a nuestra e-commerce. Emocionados de que uses nuestra plataforma :D!\n\nGracias,\nEl equipo de E-commerce"
+        );
+
+        return registeredUser;
     }
 
     public Optional<SiteUser> loginUser(String emailAddress, String password) {
