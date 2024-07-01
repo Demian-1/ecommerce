@@ -10,7 +10,13 @@
     
     <div class="product-price-cart">
         <p>{{ "$"+product.price }}</p>
+        <span class="input-number-container">
+            <p-button icon="pi pi-minus" styleClass="ml-2" (onClick)="substractQty()"/>
+            <input type="number" pInputNumber [(ngModel)]="qty" [min]="1" [max]="10" class="input-number" />
+            <p-button icon="pi pi-plus" styleClass="ml-2" (onClick)="qty=qty+1"/>
+        </span>
         <span>
+
             <p-button icon="pi pi-shopping-cart" styleClass="ml-2" (onClick)="addToCart(product.id)"/>
         </span>
     </div>

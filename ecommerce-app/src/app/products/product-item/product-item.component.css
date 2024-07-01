@@ -39,3 +39,20 @@
     line-height: 1.5; /* Adjust line height as needed */
     max-height: 4.5em; /* Should be line-height * lines to show */
   }
+  .input-number {
+    width: 50px;
+  }
+
+  .input-number-container{
+    display: flex;
+    align-items: center ;
+  }
+  .p-inputnumber-input{
+    width: 50px!;
+  }
+
+  .input-number {
+    height: 100%;
+    font-size: large;
+    text-align: center;
+  }
