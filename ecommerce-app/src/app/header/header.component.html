@@ -1,3 +1,9 @@
-<div class="card">
-    <p-tabMenu [model]="elementosDelMenu"></p-tabMenu>
-</div>
+<p-tabMenu [model]="elementosDelMenu"></p-tabMenu>
+
+<p-dialog header="Confirmar Logout" [(visible)]="displayLogoutDialog" modal="modal" [closable]="false" [resizable]="false">
+  <p>¿Estás seguro de que deseas cerrar sesión?</p>
+  <div class="p-dialog-footer">
+    <button pButton type="button" label="No" icon="pi pi-times" (click)="onCancel()"></button>
+    <button pButton type="button" label="Sí" icon="pi pi-check" (click)="onLogout()"></button>
+  </div>
+</p-dialog>

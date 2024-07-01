@@ -1,7 +1,6 @@
 <div class="d-flex flex-column min-vh-100">
   <ng-container *ngIf="authService.isAuthenticated(); else notAuthenticated">
     <app-header></app-header>
-    <button pButton type="button" label="Logout" (click)="onLogout()"></button>
   </ng-container>
   <ng-template #notAuthenticated>
     <app-header-no-auth></app-header-no-auth>  
