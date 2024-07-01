@@ -1,47 +1,42 @@
 package com.ipn.mx.ecommerce.controller;
 
 import com.ipn.mx.ecommerce.model.Category;
-import com.ipn.mx.ecommerce.model.Country;
-import com.ipn.mx.ecommerce.service.CategoryService;
+import com.ipn.mx.ecommerce.model.Product;
+import com.ipn.mx.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/product")
 public class ProductController {
 
     @Autowired
-    private CategoryService categoryService;
+    private ProductService productService;
 
     @PostMapping
-    public Category createCountry(@RequestBody Category category) {
-        return categoryService.save(category);
-    }
-
-    @GetMapping
-    public List<Category> getAllCountries() {
-        return categoryService.findAll();
+    public Product createProduct(@RequestBody Product product) {
+        return productService.save(product);
     }
 
     @GetMapping("/{id}")
-    public Category getCountryById(@PathVariable int id) {
-        return categoryService.findById(id).orElse(null);
+    public Product getProductById(@PathVariable int id) {
+        return productService.findById(id).orElse(null);
     }
 
     @PutMapping("/{id}")
-    public Category updateCountry(@PathVariable int id, @RequestBody Category categorydatails) {
-        Category category = categoryService.findById(id).orElse(null);
-        if (category != null) {
-            category = (Category) categorydatails;
-            return categoryService.save(category);
+    public Product updateProduct(@PathVariable int id, @RequestBody Product productDetails) {
+        Product product = productService.findById(id).orElse(null);
+        if (product != null) {
+            product = (Product) productDetails;
+            return productService.save(product);
         }
         return null;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCountry(@PathVariable int id) {
-        categoryService.deleteById(id);
+    public void deleteProduct(@PathVariable int id) {
+        productService.deleteById(id);
     }
 }

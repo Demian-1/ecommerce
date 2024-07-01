@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,8 +24,21 @@ public class ProductItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "sku", nullable = false, length = 100)
+    private String sku;
 
-    @OneToMany(mappedBy = "OrderLine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<UserAddress> userAddresses;
+    @Column(name = "qty-in-stock", nullable = false)
+    private Integer qtyInStock;
+
+    @Column(name = "image", nullable = false, length = 240)
+    private String image;
+
+    @Column(name = "price", nullable = false)
+    private Float price;
+
+    @ManyToOne
+    @JoinColumn(name = "Product", nullable = false)
+    private Product product;
 }
+
+

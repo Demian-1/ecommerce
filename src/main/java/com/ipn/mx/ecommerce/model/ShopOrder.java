@@ -24,7 +24,7 @@ public class ShopOrder implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "oreder_date", nullable = false)
+    @Column(name = "order_date", nullable = false)
     private Date orderDate;
 
     @ManyToOne
@@ -37,10 +37,10 @@ public class ShopOrder implements Serializable {
     @Column(name = "oreder_total", nullable = false)
     private Float orderTotal;
 
-    @Column(name = "oreder_status", nullable = false, length = 50)
+    @Column(name = "order_status", nullable = false, length = 50)
     private Date orderStatus;
 
-    //todo agregar la tabla
+    //todo userPayment method
     //@OneToMany(mappedBy = "UserPaymentMethod", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@JsonIgnore
     //private List<UserPaymentMethod> userPaymentMethod;
