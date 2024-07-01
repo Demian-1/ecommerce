@@ -1,5 +1,6 @@
 package com.ipn.mx.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -22,5 +23,6 @@ public class ShoppingCart {
     private SiteUser user;
 
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<ShoppingCartItem> items;
 }

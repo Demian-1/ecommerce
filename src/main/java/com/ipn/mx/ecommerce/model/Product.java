@@ -1,6 +1,8 @@
 package com.ipn.mx.ecommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,6 +45,7 @@ public class Product implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<ShoppingCartItem> shoppingCartItems;
 
     @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)

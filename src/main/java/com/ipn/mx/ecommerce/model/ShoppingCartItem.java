@@ -1,5 +1,6 @@
 package com.ipn.mx.ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -21,10 +22,12 @@ public class ShoppingCartItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shopping_cart_id", nullable = false)
+    @JsonBackReference
     private ShoppingCart shoppingCart;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
+    @JsonBackReference
     private Product product;
 
     private Integer qty;

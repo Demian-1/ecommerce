@@ -16,6 +16,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartRepository shoppingCartRepository;
 
     @Override
+    public ShoppingCart save(ShoppingCart sc) {
+        return shoppingCartRepository.save(sc);
+    }
+
+    @Override
     public Optional<ShoppingCart> getCartByUserId(Integer userId) {
         return shoppingCartRepository.findByUserId(userId);
     }

@@ -1,6 +1,8 @@
 package com.ipn.mx.ecommerce.controller;
 
+import com.ipn.mx.ecommerce.model.ShoppingCart;
 import com.ipn.mx.ecommerce.model.SiteUser;
+import com.ipn.mx.ecommerce.service.interfaces.ShoppingCartService;
 import com.ipn.mx.ecommerce.service.interfaces.SiteUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ public class SiteUserController {
     @Autowired
     private SiteUserService siteUserService;
 
+    @Autowired
+    private ShoppingCartService shoppingCartService;
+
     @GetMapping("/{id}")
     public Optional<SiteUser> getCountryById(@PathVariable int id) {
         return siteUserService.getUserById(id);
@@ -25,6 +30,9 @@ public class SiteUserController {
     public ResponseEntity<?> registerUser(@RequestBody SiteUser user) {
         try {
             SiteUser registeredUser = siteUserService.registerUser(user);
+            ShoppingCart sc = new ShoppingCart();
+            sc.setUser(registeredUser);
+            shoppingCartService.save(sc);
             return ResponseEntity.ok(registeredUser);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

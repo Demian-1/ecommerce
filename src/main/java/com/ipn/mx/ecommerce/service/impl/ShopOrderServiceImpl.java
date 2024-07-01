@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopOrderServiceImpl implements ShopOrderService {
@@ -28,8 +29,8 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     }
 
     @Override
-    public ShopOrder getShopOrderById(int id) {
-        return shopOrderRepository.findById(id).orElse(null);
+    public Optional<ShopOrder> getShopOrderById(int id) {
+        return shopOrderRepository.findById(id);
     }
 
     @Override

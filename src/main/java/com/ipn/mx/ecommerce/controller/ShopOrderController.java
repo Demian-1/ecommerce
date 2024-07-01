@@ -1,12 +1,14 @@
 package com.ipn.mx.ecommerce.controller;
 
 import com.ipn.mx.ecommerce.model.ShopOrder;
+import com.ipn.mx.ecommerce.model.ShoppingCartItem;
 import com.ipn.mx.ecommerce.service.interfaces.ShopOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/shop-orders")
@@ -27,7 +29,11 @@ public class ShopOrderController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ShopOrder> getShopOrderById(@PathVariable int id) {
-        return ResponseEntity.ok(shopOrderService.getShopOrderById(id));
+        Optional<ShopOrder> r = shopOrderService.getShopOrderById(id);
+        if (r.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(r.get());
     }
 
     @PutMapping("/{id}")
