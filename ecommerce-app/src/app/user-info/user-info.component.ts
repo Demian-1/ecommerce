@@ -7,6 +7,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { SiteUser } from '../model/SiteUser';
 import { SiteUserService } from '../service/site-user.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-info',
@@ -16,15 +18,18 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     InputTextModule,
     ButtonModule, 
     InputNumberModule,
-    FloatLabelModule
+    FloatLabelModule,
+    ToastModule
   ],
   templateUrl: './user-info.component.html',
-  styleUrl: './user-info.component.css'
+  styleUrl: './user-info.component.css',
+  providers: [MessageService]
 })
 export class UserInfoComponent {
   constructor(
     private authService: AuthService,
     private siteUserService: SiteUserService,
+    private messageService: MessageService
   ){}
   usuario = new SiteUser();
   editar = false;
@@ -38,6 +43,14 @@ export class UserInfoComponent {
         this.usuario = data;
       });
     }
+  }
+
+  updateUser(){
+    this.siteUserService.updateUser(this.usuario.id, this.usuario).subscribe(data => {
+      this.usuario = data;
+      this.editar = false;
+      this.messageService.add({ severity: 'success', summary: 'Datos actualizados', detail: 'Datos actualizados correctamente' });
+    });
   }
 
   id = this.authService.getUserId();
