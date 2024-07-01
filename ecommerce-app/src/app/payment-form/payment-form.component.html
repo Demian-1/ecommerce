@@ -1,0 +1,67 @@
+<p-card class="payment-card">
+  <div class="payment-form-container">
+    <h2>Método de Pago</h2>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="p-fluid">
+      <div class="p-field">
+        <label for="paymentType">Tipo de Pago:</label><br>
+        <p-dropdown [options]="paymentTypes" optionLabel="typeName" formControlName="paymentType" class="full-width-input" placeholder="Seleccionar Tipo de Pago"></p-dropdown>
+        <small *ngIf="paymentForm.get('paymentType')?.touched && paymentForm.get('paymentType')?.invalid" class="p-error">
+          Tipo de Pago es requerido.
+        </small>
+      </div>
+
+      <div class="p-field">
+        <label for="provider">CVV:</label><br>
+        <input id="provider" formControlName="provider" pInputText class="full-width-input" />
+        <small *ngIf="paymentForm.get('provider')?.touched && paymentForm.get('provider')?.invalid" class="p-error">
+          CVV es requerido.
+        </small>
+      </div>
+
+      <div class="p-field">
+        <label for="accountNumber">Número de Cuenta:</label><br>
+        <input id="accountNumber" formControlName="accountNumber" pInputText class="full-width-input" />
+        <small *ngIf="paymentForm.get('accountNumber')?.touched && paymentForm.get('accountNumber')?.invalid" class="p-error">
+          Número de Cuenta es requerido y no puede exceder 100 caracteres.
+        </small>
+      </div>
+
+      <div class="p-field">
+        <label for="expiryDate">Fecha de Expiración:</label><br>
+        <p-calendar id="expiryDate" formControlName="expiryDate" dateFormat="yy-mm-dd" showIcon class="full-width-input"></p-calendar>
+        <small *ngIf="paymentForm.get('expiryDate')?.touched && paymentForm.get('expiryDate')?.invalid" class="p-error">
+          Fecha de Expiración es requerida.
+        </small>
+      </div>
+
+      <button pButton type="submit" label="Agregar Método de Pago" icon="pi pi-check" class="full-width-button"></button>
+    </form>
+  </div>
+</p-card>
+
+<p-card class="payment-methods-card p-mt-4">
+  <h2>Métodos de Pago</h2>
+  <p-table [value]="paymentMethods" class="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Tipo de Pago</th>
+        <th>Número de Cuenta</th>
+        <th>Fecha de Expiración</th>
+        <th>Predeterminado</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-paymentMethod>
+      <tr>
+        <td>{{ paymentMethod.paymentType.typeName }}</td>
+        <td>{{ censorAccountNumber(paymentMethod.accountNumber) }}</td>
+        <td>{{ paymentMethod.expiryDate | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ paymentMethod.isDefault ? 'Sí' : 'No' }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-trash" (click)="deletePaymentMethod(paymentMethod.id)"></button>
+          <button pButton type="button" label="Set Default" icon="pi pi-check" (click)="setDefaultPaymentMethod(paymentMethod)" [disabled]="paymentMethod.isDefault"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
