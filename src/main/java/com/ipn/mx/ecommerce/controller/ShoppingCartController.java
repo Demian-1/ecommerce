@@ -46,7 +46,7 @@ public class ShoppingCartController {
         item.setProduct(p.get());
         item.setQty(qty);
         item.setShoppingCart(cart.get());
-        shoppingCartItemService.addItemToCart(item);
+        shoppingCartItemService.save(item);
 
         return new ResponseEntity<>(item, HttpStatus.OK);
     }
@@ -85,14 +85,14 @@ public class ShoppingCartController {
 
     @GetMapping("/{cartId}/items")
     public ResponseEntity<List<ShoppingCartItem>> getItemsByCartId(@PathVariable Integer cartId) {
-        List<ShoppingCartItem> items = shoppingCartItemService.getItemsByCartId(cartId);
+        List<ShoppingCartItem> items = shoppingCartItemService.findAllByShoppingCartId(cartId);
         return ResponseEntity.ok(items);
     }
 
     @PostMapping("/{cartId}/items")
     public ResponseEntity<ShoppingCartItem> addItemToCart(@PathVariable Integer cartId, @RequestBody ShoppingCartItem item) {
         item.setShoppingCart(new ShoppingCart(cartId, null, null));
-        ShoppingCartItem addedItem = shoppingCartItemService.addItemToCart(item);
+        ShoppingCartItem addedItem = shoppingCartItemService.save(item);
         return ResponseEntity.ok(addedItem);
     }
 
@@ -104,7 +104,7 @@ public class ShoppingCartController {
 
     @DeleteMapping("/items/{itemId}")
     public ResponseEntity<Void> removeItemFromCart(@PathVariable Integer itemId) {
-        shoppingCartItemService.removeItemFromCart(itemId);
+        shoppingCartItemService.deleteById(itemId);
         return ResponseEntity.noContent().build();
     }
 }

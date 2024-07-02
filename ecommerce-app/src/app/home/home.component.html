@@ -1,9 +1,0 @@
-<div class="home-container">
-    <p-card *ngFor="let product of products" header="{{ product.name }}" subheader="{{ product.price | currency:'USD':'symbol':'1.2-2' }}">
-      <ng-template pTemplate="content">
-        <p>{{ product.description }}</p>
-        <button pButton type="button" label="Add to Cart" icon="pi pi-shopping-cart" (click)="addToCart(product)"></button>
-      </ng-template>
-    </p-card>
-  </div>
-  

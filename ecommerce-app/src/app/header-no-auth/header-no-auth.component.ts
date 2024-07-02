@@ -15,7 +15,7 @@ export class HeaderNoAuthComponent {
 
   ngOnInit(): void {
     this.elementosDelMenu = [
-      {label: 'Home', icon: 'pi pi-home', routerLink: '/home'},
+      {label: 'Productos', icon: 'pi pi-box', routerLink: '/product-list'},
       {label: 'Registro', icon: 'pi pi-user-edit', routerLink: '/registroForm'},
       {label: 'Login', icon: 'pi pi-user-plus', routerLink: '/loginForm'}
     ];

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
@@ -15,17 +16,27 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
     private ShoppingCartItemRepository shoppingCartItemRepository;
 
     @Override
-    public ShoppingCartItem addItemToCart(ShoppingCartItem item) {
+    public ShoppingCartItem save(ShoppingCartItem item) {
         return shoppingCartItemRepository.save(item);
     }
 
     @Override
-    public void removeItemFromCart(Integer itemId) {
+    public void deleteById(Integer itemId) {
         shoppingCartItemRepository.deleteById(itemId);
     }
 
     @Override
-    public List<ShoppingCartItem> getItemsByCartId(Integer cartId) {
+    public List<ShoppingCartItem> findAll() {
+        return shoppingCartItemRepository.findAll();
+    }
+
+    @Override
+    public Optional<ShoppingCartItem> findById(Integer itemId) {
+        return shoppingCartItemRepository.findById(itemId);
+    }
+
+    @Override
+    public List<ShoppingCartItem> findAllByShoppingCartId(Integer cartId) {
         return shoppingCartItemRepository.findAllByShoppingCartId(cartId);
     }
 

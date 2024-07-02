@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h2 class="text-center shopping-cart-title">
+    <i class="pi pi-shopping-cart"></i>
+    Carrito de Compras
+  </h2>
+  <div class="card p-4 shadow address-form-container">
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <p-table [value]="cartItems" responsiveLayout="scroll" class="p-mt-4 wide-table">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="column-image">Imagen</th>
+            <th class="column-name">Nombre</th>
+            <th class="description-column">Descripción</th>
+            <th class="column-quantity">Cantidad</th>
+            <th class="column-price">Precio</th>
+            <th class="column-total">Total</th>
+            <th class="column-actions">Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td class="column-image"><img [src]="item.product.image" class="img-fluid" alt="{{ item.product.name }}" style="max-width: 100px;"></td>
+            <td class="column-name">{{ item.product.name }}</td>
+            <td class="description-column">{{ item.product.description }}</td>
+            <td class="column-quantity">
+              <div class="quantity-control d-flex align-items-center justify-content-center">
+                <button pButton icon="pi pi-minus" (click)="updateQuantity(item, item.qty - 1)" [disabled]="item.qty <= 1" class="p-button-rounded p-button-text"></button>
+                <span class="px-3">{{ item.qty }}</span>
+                <button pButton icon="pi pi-plus" (click)="updateQuantity(item, item.qty + 1)" class="p-button-rounded p-button-text"></button>
+              </div>
+            </td>
+            <td class="column-price">{{ item.product.price | currency }}</td>
+            <td class="column-total">{{ item.totalPrice | currency }}</td>
+            <td class="column-actions">
+              <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text" (click)="confirmRemoveItem(item.id)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <div class="total-section text-end mt-4">
+        <h4>Total: {{ total | currency }}</h4>
+        <button pButton type="button" label="Comprar" icon="pi pi-check" (click)="checkout()" class="p-button-success full-width-button"></button>
+      </div>
+    </div>
+    <ng-template #emptyCart>
+      <p class="text-center">Tu carrito de compras está vacío.</p>
+    </ng-template>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

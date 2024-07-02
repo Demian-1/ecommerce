@@ -5,7 +5,8 @@ import { Product } from '../../model/Product';
 import { AuthService } from '../../service/auth.service';
 import { ShoppingCartService } from '../../service/shoppingcart.service';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-item',
@@ -14,38 +15,51 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
     CardModule,
     ButtonModule,
     InputNumberModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './product-item.component.html',
-  styleUrl: './product-item.component.css'
+  styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent {  
   @Input() product = new Product();
-  userId : number | null = null;
+  userId: number | null = null;
   qty = 1;
+
   constructor(
     private authService: AuthService,
     private shoppingCartService: ShoppingCartService,
   ) { }
 
-  substractQty(){
-    if(this.qty>1){
+  ngOnInit() {
+    this.userId = this.authService.getUserId();
+  }
+
+  substractQty() {
+    if (this.qty > 1) {
       this.qty = this.qty - 1;
     }
   }
 
-  ngOnInit(){
-    this.userId = this.authService.getUserId();
+  isUserLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
   }
 
-  addToCart(idProducto: number){
-    if(this.userId){
-      this.shoppingCartService.addProductToCart(idProducto, this.userId, this.qty).subscribe(
-        () => {
-          alert("Agregado con exito");
+  addToCart(idProducto: number) {
+    if (this.userId) {
+      this.shoppingCartService.getCartByUserId(this.userId).subscribe(cart => {
+        const existingItem = cart.items?.find(item => item.product.id === idProducto);
+        if (existingItem) {
+          const newQty = existingItem.qty + this.qty;
+          this.shoppingCartService.updateItemQuantity(existingItem.id!, newQty).subscribe(() => {
+            alert("Cantidad actualizada con éxito");
+          });
+        } else {
+          this.shoppingCartService.addProductToCart(idProducto, this.userId!, this.qty).subscribe(() => {
+            alert("Agregado con éxito");
+          });
         }
-      );
+      });
     }
   }
-
 }

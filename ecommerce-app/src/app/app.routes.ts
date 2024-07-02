@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AuthGuard } from './service/auth.guard';
@@ -8,16 +7,13 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
     {
       path: '',
       redirectTo: '/product-list',
       pathMatch: 'full'
-    },
-    {
-      path: 'home',
-      component: HomeComponent
     },
     {
       path: 'loginForm',
@@ -39,7 +35,7 @@ export const routes: Routes = [
     },
     {
       path: 'shopping_cart',
-      component: RegisterFormComponent,
+      component: ShoppingCartComponent,
       canActivate: [AuthGuard]
     },
     {
