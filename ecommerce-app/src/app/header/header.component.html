@@ -1,9 +1,17 @@
-<p-tabMenu [model]="elementosDelMenu"></p-tabMenu>
-
-<p-dialog header="Confirmar Logout" [(visible)]="displayLogoutDialog" modal="modal" [closable]="false" [resizable]="false">
-  <p>¿Estás seguro de que deseas cerrar sesión?</p>
-  <div class="p-dialog-footer">
-    <button pButton type="button" label="No" icon="pi pi-times" (click)="onCancel()"></button>
-    <button pButton type="button" label="Sí" icon="pi pi-check" (click)="onLogout()"></button>
+<header class="header">
+  <div class="header-content">
+    <div class="logo-section">
+      <img src="https://www.escom.ipn.mx/images/logoESCOM.png" alt="Logo ESCOM" class="logo-image">
+    </div>
+    <div class="menu-section">
+      <p-tabMenu [model]="elementosDelMenu"></p-tabMenu>
+    </div>
   </div>
-</p-dialog>
+  <p-dialog header="Confirmar Logout" [(visible)]="displayLogoutDialog" modal="modal" [closable]="false" [resizable]="false">
+    <p>¿Estás seguro de que deseas cerrar sesión?</p>
+    <div class="p-dialog-footer">
+      <button pButton type="button" label="No" icon="pi pi-times" (click)="onCancel()"></button>
+      <button pButton type="button" label="Sí" icon="pi pi-check" (click)="onLogout()"></button>
+    </div>
+  </p-dialog>
+</header>

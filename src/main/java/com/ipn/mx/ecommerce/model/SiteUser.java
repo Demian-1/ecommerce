@@ -46,4 +46,8 @@ public class SiteUser implements Serializable {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private ShoppingCart userCarts;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ShopOrder> shopOrders;
 }

@@ -1,0 +1,25 @@
+
+  .header-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 100%;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-image {
+    height: 50px; /* Adjust the height of the logo */
+    margin-right: 20px;
+  }
+  
+  .menu-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Align the menu items to the right */
+  }

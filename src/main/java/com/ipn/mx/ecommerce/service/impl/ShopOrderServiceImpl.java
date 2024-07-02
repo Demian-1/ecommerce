@@ -24,6 +24,11 @@ public class ShopOrderServiceImpl implements ShopOrderService {
     }
 
     @Override
+    public List<ShopOrder> findByUserId(int userId) {
+        return shopOrderRepository.findByUserId(userId);
+    }
+
+    @Override
     public List<ShopOrder> getAllShopOrders() {
         return shopOrderRepository.findAll();
     }

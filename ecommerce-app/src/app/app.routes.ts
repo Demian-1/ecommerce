@@ -8,6 +8,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShopOrderComponent } from './shop-order/shop-order.component';
 
 export const routes: Routes = [
     {
@@ -40,7 +41,12 @@ export const routes: Routes = [
     },
     {
       path: 'shop_order',
-      component: RegisterFormComponent,
+      component: ShopOrderComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'shop_order/:id',
+      component: ShopOrderComponent,
       canActivate: [AuthGuard]
     },
     {

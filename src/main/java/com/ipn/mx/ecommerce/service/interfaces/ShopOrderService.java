@@ -10,4 +10,5 @@ public interface ShopOrderService {
     Optional<ShopOrder> getShopOrderById(int id);
     ShopOrder updateShopOrder(ShopOrder shopOrder);
     void deleteShopOrder(int id);
+    List<ShopOrder> findByUserId(int userId);
 }

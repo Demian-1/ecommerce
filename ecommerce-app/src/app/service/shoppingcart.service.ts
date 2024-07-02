@@ -40,6 +40,10 @@ export class ShoppingCartService {
 
   constructor(private http: HttpClient) { }
 
+  emptyCart(userId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${userId}/empty`);
+  }
+
   addProductToCart(idProducto: number, idUsuario: number, qty: number): Observable<void>{
     return this.http.post<void>(`${this.apiUrl}/user/${idUsuario}/product/${idProducto}/qty/${qty}`, null);
   }

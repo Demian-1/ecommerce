@@ -17,6 +17,12 @@ public class ShopOrderController {
     @Autowired
     private ShopOrderService shopOrderService;
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ShopOrder>> getOrdersByUserId(@PathVariable int userId) {
+        List<ShopOrder> orders = shopOrderService.findByUserId(userId);
+        return ResponseEntity.ok(orders);
+    }
+
     @PostMapping
     public ResponseEntity<ShopOrder> createShopOrder(@RequestBody ShopOrder shopOrder) {
         return ResponseEntity.ok(shopOrderService.saveShopOrder(shopOrder));

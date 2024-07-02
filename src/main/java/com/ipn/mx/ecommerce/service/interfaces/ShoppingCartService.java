@@ -9,4 +9,5 @@ public interface ShoppingCartService {
     Optional<ShoppingCart> getCartByUserId(Integer userId);
     ShoppingCart createOrUpdateCart(ShoppingCart cart);
     void deleteCart(Integer cartId);
+    void emptyCart(int userId);
 }

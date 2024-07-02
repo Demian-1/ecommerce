@@ -1,58 +1,59 @@
-.product-price-cart {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.product-price-cart p {
-    font-weight: bold;
-    font-size: large;
-}
-
-.product-image {
-    height: 100%; /* Adjust the height as necessary */
-    
-    object-fit: cover; /* This ensures the image maintains its aspect ratio while filling the specified width and height */
-    border-radius: 8px; /* Optional: Add border radius for rounded corners */
+.product-item {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for shadow effect */
+  border-radius: 15px; /* Rounded corners */
+  overflow: hidden; /* Ensure border animation stays within the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Default shadow */
 }
 
 .image-container {
-    height: 300px;
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust the height as needed */
+  overflow: hidden; /* Ensure the image stays within the container */
 }
 
-.product-item {
-    display: block;
-    padding: 10px;
-    margin: 10px;
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-item:hover .product-image {
+  transform: scale(1.1); /* Zoom in the image */
+}
+
+.product-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 .product-description {
-    width: 100%; /* Ensure it respects the parent width */
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide the overflowing text */
-    text-overflow: ellipsis; /* Add ellipsis (...) */
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Number of lines to show */
-    -webkit-box-orient: vertical;
-    line-height: 1.5; /* Adjust line height as needed */
-    max-height: 4.5em; /* Should be line-height * lines to show */
-  }
-  .input-number {
-    width: 50px;
-  }
+  margin-top: 1rem;
+  flex-grow: 1; /* Allow description to grow and fill available space */
+}
 
-  .input-number-container{
-    display: flex;
-    align-items: center ;
-  }
-  .p-inputnumber-input{
-    width: 50px!;
-  }
+.product-price-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .input-number {
-    height: 100%;
-    font-size: large;
-    text-align: center;
-  }
+.input-number-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-number {
+  width: 3rem;
+  text-align: center;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+

@@ -1,0 +1,29 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .order-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .order-date {
+    font-size: 1rem;
+    color: #888;
+  }
+  
+  .order-details {
+    padding: 1rem;
+  }
+  
+  .order-details p {
+    margin: 0.5rem 0;
+  }
+  
+  .p-carousel .p-carousel-header .p-carousel-prev, .p-carousel .p-carousel-header .p-carousel-next {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+  }
+  

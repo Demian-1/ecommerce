@@ -43,6 +43,10 @@ public class ShopOrder implements Serializable {
     @Column(name = "order_status", nullable = false, length = 50)
     private String orderStatus;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private SiteUser user;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<UserPaymentMethod> userPaymentMethods; 

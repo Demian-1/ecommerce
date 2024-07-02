@@ -1,23 +1,22 @@
-<p-card header="{{ product.name }}" [style]="{ width: '360px' }" class="product-item">
-    <ng-template pTemplate="header" class="image-container">
-      <div class="image-container">
-        <img class="product-image" alt="Card" src="{{ product.image }}" />
-      </div>
-    </ng-template>
-    <p class="product-description">
-      {{ product.description }}
-    </p>
-  
-    <div class="product-price-cart" *ngIf="isUserLoggedIn()">
-      <p>{{ "$" + product.price }}</p>
-      <span class="input-number-container">
-        <p-button icon="pi pi-minus" styleClass="ml-2" (onClick)="substractQty()" />
-        <input type="number" pInputNumber [(ngModel)]="qty" [min]="1" [max]="10" class="input-number" />
-        <p-button icon="pi pi-plus" styleClass="ml-2" (onClick)="qty=qty+1" />
-      </span>
-      <span>
-        <p-button icon="pi pi-shopping-cart" styleClass="ml-2" (onClick)="addToCart(product.id)" />
-      </span>
+<p-card header="{{ product.name }}" [style]="{ width: '360px', height: 'auto', minHeight: '400px', maxHeight: '400px' }" class="product-item">
+  <ng-template pTemplate="header" class="image-container">
+    <div class="image-container">
+      <img class="product-image" alt="Card" src="{{ product.image }}" />
     </div>
-  </p-card>
-  
+  </ng-template>
+  <p class="product-description">
+    {{ product.description }}
+  </p>
+
+  <div class="product-price-cart" *ngIf="isUserLoggedIn()">
+    <p>{{ "$" + product.price }}</p>
+    <div class="quantity-control d-flex align-items-center justify-content-center">
+      <button pButton icon="pi pi-minus" (click)="qty > 1 ? qty = qty - 1 : null" class="p-button-rounded p-button-text"></button>
+      <span class="px-3">{{ qty }}</span>
+      <button pButton icon="pi pi-plus" (click)="qty = qty + 1" class="p-button-rounded p-button-text"></button>
+    </div>
+    <span>
+      <p-button icon="pi pi-shopping-cart" styleClass="ml-2" (onClick)="addToCart(product.id)" />
+    </span>
+  </div>
+</p-card>

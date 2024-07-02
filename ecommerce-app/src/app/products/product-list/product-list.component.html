@@ -1,14 +1,29 @@
 <div class="container product-list">
-@if(loading) {
-    <p-progressSpinner></p-progressSpinner>
-}@else {
-    @for(category of categories; track category.id) {
-        @for(product of category.products; track product.id) {
-            <app-product-item [product]="product"></app-product-item>
-        }
-    } @empty {
-        <p>No hay productos en esta categoría</p>
-    }
-}
-<div class="container product-list">
+    <div class="filter-section">
+      <h2>Filtrar por Categoría</h2>
+      <p-dropdown 
+        [options]="categories" 
+        [(ngModel)]="selectedCategory" 
+        optionLabel="name" 
+        placeholder="Seleccionar Categoría" 
+        (onChange)="onCategoryChange()">
+      </p-dropdown>
+    </div>
+    <div *ngIf="loading" class="spinner-container">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+    <div *ngIf="!loading && products.length > 0" class="products-section">
+      <h3>{{ selectedCategory?.name }}</h3>
+      <div class="products-grid">
+        <app-product-item 
+          *ngFor="let product of products" 
+          [product]="product">
+        </app-product-item>
+      </div>
+    </div>
+    <div *ngIf="!loading && products.length === 0" class="products-section">
+      <h3>{{ selectedCategory?.name }}</h3>
+      <p>No hay productos en esta categoría</p>
+    </div>
+  </div>
   

@@ -94,7 +94,7 @@
       <td>
         <button pButton type="button" icon="pi pi-pencil" class="button-green" (click)="editAddress(address)"></button>
         <button pButton type="button" icon="pi pi-trash" class="button-red" (click)="deleteAddress(address.id)"></button>
-        <button pButton type="button" icon="pi pi-check" label="Predeterminar" (click)="setDefaultAddress(address)" [disabled]="address.isDefault"></button>
+        <button pButton type="button" icon="pi pi-check" label="Set Default" (click)="setDefaultAddress(address)" [disabled]="address.isDefault"></button>
       </td>
     </tr>
   </ng-template>

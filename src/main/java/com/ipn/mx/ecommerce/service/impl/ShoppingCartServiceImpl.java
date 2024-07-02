@@ -20,6 +20,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartRepository.save(sc);
     }
 
+    public void emptyCart(int userId) {
+        Optional<ShoppingCart> optionalCart = shoppingCartRepository.findByUserId(userId);
+        if (optionalCart.isPresent()) {
+            ShoppingCart cart = optionalCart.get();
+            cart.getItems().clear();
+            shoppingCartRepository.save(cart);
+        }
+    }
+
     @Override
     public Optional<ShoppingCart> getCartByUserId(Integer userId) {
         return shoppingCartRepository.findByUserId(userId);

@@ -4,6 +4,7 @@ import com.ipn.mx.ecommerce.model.Product;
 import com.ipn.mx.ecommerce.model.ShoppingCart;
 import com.ipn.mx.ecommerce.model.ShoppingCartItem;
 import com.ipn.mx.ecommerce.model.SiteUser;
+import com.ipn.mx.ecommerce.repository.ShoppingCartRepository;
 import com.ipn.mx.ecommerce.service.interfaces.ProductService;
 import com.ipn.mx.ecommerce.service.interfaces.ShoppingCartService;
 import com.ipn.mx.ecommerce.service.interfaces.ShoppingCartItemService;
@@ -106,5 +107,11 @@ public class ShoppingCartController {
     public ResponseEntity<Void> removeItemFromCart(@PathVariable Integer itemId) {
         shoppingCartItemService.deleteById(itemId);
         return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{userId}/empty")
+    public ResponseEntity<Void> emptyCart(@PathVariable int userId) {
+        shoppingCartService.emptyCart(userId);
+        return ResponseEntity.ok().build();
     }
 }

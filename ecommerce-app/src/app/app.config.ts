@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { routes } from './app.routes';
+import { CarouselModule } from 'primeng/carousel';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +13,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       BrowserAnimationsModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
+      CarouselModule,
     )
   ]
 };
