@@ -10,4 +10,5 @@ public interface CategoryService {
     Optional<Category> getById(int id);
     Category save(Category category);
     void deleteById(int id);
+    List<Category> saveAll(List<Category> category);
 }

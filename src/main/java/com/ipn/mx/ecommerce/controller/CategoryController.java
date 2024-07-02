@@ -16,6 +16,11 @@ public class CategoryController {
     @Autowired
     private CategoryService service;
 
+   @PostMapping("/batch")
+    public List<Category> createcCategories(@RequestBody List<Category> categories) {
+        return service.saveAll(categories);
+    }
+
     @GetMapping
     public ResponseEntity<List<Category>> getAll(){
         try {

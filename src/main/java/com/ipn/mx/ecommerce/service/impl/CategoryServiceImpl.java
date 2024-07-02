@@ -1,6 +1,7 @@
 package com.ipn.mx.ecommerce.service.impl;
 
 import com.ipn.mx.ecommerce.model.Category;
+import com.ipn.mx.ecommerce.model.Country;
 import com.ipn.mx.ecommerce.repository.CategoryRepository;
 import com.ipn.mx.ecommerce.service.interfaces.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category save(Category category) {
         return repository.save(category);
+    }
+
+    @Override
+    public List<Category> saveAll(List<Category> category) {
+        return repository.saveAll(category);
     }
 
     @Override
