@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
@@ -25,7 +26,7 @@ public class OrderLine implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    @JsonIgnore
+    @JsonBackReference
     private ShopOrder shopOrder;
 
     @Column(name = "qty", nullable = false)
