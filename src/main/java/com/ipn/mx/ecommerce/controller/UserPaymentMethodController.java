@@ -1,5 +1,6 @@
 package com.ipn.mx.ecommerce.controller;
 
+import com.ipn.mx.ecommerce.model.UserAddress;
 import com.ipn.mx.ecommerce.model.UserPaymentMethod;
 import com.ipn.mx.ecommerce.service.interfaces.UserPaymentMethodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,11 @@ public class UserPaymentMethodController {
     public ResponseEntity<Void> deleteUserPaymentMethod(@PathVariable int id) {
         userPaymentMethodService.deleteUserPaymentMethod(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<UserPaymentMethod>> getUserPaymentMethodByUserId(@PathVariable int userId) {
+        List<UserPaymentMethod> userPaymentMethods = userPaymentMethodService.getUserPaymentMethodByUserId(userId);
+        return ResponseEntity.ok(userPaymentMethods);
     }
 }

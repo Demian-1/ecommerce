@@ -45,5 +45,8 @@ public class ShopOrder implements Serializable {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<UserPaymentMethod> userPaymentMethods; 
+
+    @OneToMany(mappedBy = "shopOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderLine> orderLineItems;
 }
 

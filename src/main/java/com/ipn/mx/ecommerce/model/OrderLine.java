@@ -1,14 +1,11 @@
 package com.ipn.mx.ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @NoArgsConstructor
@@ -22,19 +19,19 @@ public class OrderLine implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "price", nullable = false)
-    private double price;
+    @ManyToOne
+    @JoinColumn(name = "product_item_id", nullable = false)
+    private Product productItem;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    @JsonIgnore
+    private ShopOrder shopOrder;
 
     @Column(name = "qty", nullable = false)
     private Integer qty;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product productItem;
-
-
-    @ManyToOne
-    @JoinColumn(name = "ShopOrder", nullable = false)
-    private ShopOrder shopOrder;
-
+    @Column(name = "price", nullable = false)
+    private double price;
+    
 }

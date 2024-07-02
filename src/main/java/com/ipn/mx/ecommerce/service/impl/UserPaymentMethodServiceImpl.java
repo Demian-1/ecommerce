@@ -1,5 +1,6 @@
 package com.ipn.mx.ecommerce.service.impl;
 
+import com.ipn.mx.ecommerce.model.UserAddress;
 import com.ipn.mx.ecommerce.model.UserPaymentMethod;
 import com.ipn.mx.ecommerce.repository.UserPaymentMethodRepository;
 import com.ipn.mx.ecommerce.service.interfaces.UserPaymentMethodService;
@@ -37,5 +38,10 @@ public class UserPaymentMethodServiceImpl implements UserPaymentMethodService {
     @Override
     public void deleteUserPaymentMethod(int id) {
         userPaymentMethodRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UserPaymentMethod> getUserPaymentMethodByUserId(int userId) {
+        return userPaymentMethodRepository.findByUserId(userId);
     }
 }

@@ -49,5 +49,6 @@ public class Product implements Serializable {
     private List<ShoppingCartItem> shoppingCartItems;
 
     @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<OrderLine> orderLineItems;
 }

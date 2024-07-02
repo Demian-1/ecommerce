@@ -2,7 +2,8 @@ package com.ipn.mx.ecommerce.service.impl;
 
 import com.ipn.mx.ecommerce.model.OrderLine;
 import com.ipn.mx.ecommerce.repository.OrderLineRepository;
-import com.ipn.mx.ecommerce.service.OrderLineService;
+import com.ipn.mx.ecommerce.service.interfaces.OrderLineService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class OrderLineServiceImpl implements OrderLineService {
     }
 
     @Override
-    public void delete(OrderLine orderLine) {
-        orderLineRepository.delete(orderLine);
+    public void deleteById(int id) {
+        orderLineRepository.deleteById(id);
     }
 }

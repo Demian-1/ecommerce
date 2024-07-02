@@ -9,4 +9,5 @@ public interface UserPaymentMethodService {
     UserPaymentMethod getUserPaymentMethodById(int id);
     UserPaymentMethod updateUserPaymentMethod(UserPaymentMethod userPaymentMethod);
     void deleteUserPaymentMethod(int id);
+    List<UserPaymentMethod> getUserPaymentMethodByUserId(int userId);
 }
